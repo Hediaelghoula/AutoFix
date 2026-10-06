@@ -1,0 +1,24 @@
+<div class="auth-container">
+
+  <h2>Se connecter</h2>
+
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-error">
+    {{ errorMessage }}
+  </div>
+
+  <form (ngSubmit)="submit()">
+    <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required>
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Mot de passe" required>
+    <button type="submit" >Se connecter</button>
+  </form>
+
+  <div class="auth-footer">
+    Pas encore de compte ? <a routerLink="/register">Créer un compte</a>
+  </div>
+
+</div>

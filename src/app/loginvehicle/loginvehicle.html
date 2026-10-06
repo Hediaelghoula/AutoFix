@@ -1,0 +1,28 @@
+<div class="vehicle-form">
+  <h2>Identifier votre véhicule</h2>
+
+  <form (ngSubmit)="submit()">
+    <label>Marque</label>
+    <select [(ngModel)]="selectedMake" name="make" required>
+      <option value="">-- Sélectionnez une marque --</option>
+      <option *ngFor="let make of makes" [value]="make.Make_Name">
+        {{ make.Make_Name }}
+      </option>
+    </select>
+
+    <label>VIN</label>
+    <input type="text" [(ngModel)]="vin" name="vin" required>
+
+    <label>Type d'immatriculation</label>
+    <select [(ngModel)]="selectedRegistrationType" name="registrationType" required>
+      <option value="">-- Sélectionnez --</option>
+      <option *ngFor="let t of registrationTypes" [value]="t">{{ t }}</option>
+    </select>
+        <label>Matricule</label>
+    <input type="text" [(ngModel)]="plateNumber" name="plate_number" placeholder="Ex: 123-TN-456" required>
+
+    <button type="submit">Valider</button>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
+</div>

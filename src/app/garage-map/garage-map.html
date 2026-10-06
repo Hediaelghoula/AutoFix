@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Réserver un garage</h2>
+
+  <form (ngSubmit)="confirmer()">
+    <div>
+      <label>Date :</label>
+      <input type="date" [(ngModel)]="selectedDate" name="date" required>
+    </div>
+
+    <div>
+      <label>Heure :</label>
+      <input type="time" [(ngModel)]="selectedTime" name="time" required>
+    </div>
+
+    <button type="submit">Confirmer</button>
+  </form>
+
+  <div *ngIf="closestGarage" class="result">
+    <p><strong>Garage :</strong> {{ closestGarage.name }}</p>
+    <p>{{ closestGarage.open }} - {{ closestGarage.close }}</p>
+  </div>
+
+  <div *ngIf="showMap" id="map"></div>
+</div>

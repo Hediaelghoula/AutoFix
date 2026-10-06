@@ -1,0 +1,406 @@
+:host {
+  --bg-main: #020617;
+  --bg-card: rgba(15, 23, 42, 0.96);
+  --border-muted: rgba(148, 163, 184, 0.3);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --accent-blue: #38bdf8;
+  --accent-green: #22c55e;
+  --accent-purple: #a855f7;
+  --error: #f87171;
+  --success: #4ade80;
+}
+
+/* ----- CARD PRINCIPALE ----- */
+
+.rendezvous-form {
+  max-width: 760px;
+  margin: 2.2rem auto;
+  padding: 1.7rem 1.9rem;
+  border-radius: 1.3rem;
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.16), transparent 55%),
+    var(--bg-card);
+  border: 1px solid var(--border-muted);
+  color: var(--text-main);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(18px);
+}
+
+.rendezvous-form h2 {
+  margin-bottom: 1.3rem;
+  font-size: 1.45rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rendezvous-form h2::before {
+  content: '';
+  width: 32px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+}
+
+/* ----- LABELS & INPUTS ----- */
+
+label {
+  display: block;
+  margin-top: 0.9rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+select,
+input[type="date"],
+input[type="time"],
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.7rem;
+  border: 1px solid var(--border-muted);
+  background: rgba(15, 23, 42, 0.95);
+  color: var(--text-main);
+  font-size: 0.9rem;
+  outline: none;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease,
+    transform 0.12s ease;
+}
+
+select:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+textarea:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.7);
+  transform: translateY(-1px);
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.vehicle-info {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 0.6rem;
+  background: rgba(15, 23, 42, 0.85);
+}
+
+/* ----- CRENEAUX HORAIRES ----- */
+
+.slots-wrapper {
+  margin-top: 0.8rem;
+}
+
+.info-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.slots-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.4rem;
+}
+
+.slot-btn {
+  border-radius: 999px;
+  border: 1px solid var(--border-muted);
+  background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+  color: var(--text-main);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    transform 0.14s ease,
+    color 0.14s ease,
+    box-shadow 0.16s ease;
+}
+
+.slot-btn:hover:not(:disabled) {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: var(--accent-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.9);
+}
+
+.slot--selected {
+  background: linear-gradient(120deg, var(--accent-blue), var(--accent-green));
+  border-color: transparent;
+  color: #0b1120;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(34, 197, 94, 0.4);
+}
+
+.slot--booked {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ----- PRIX ----- */
+
+.price-info {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.price-info span {
+  font-weight: 600;
+  color: var(--accent-green);
+}
+
+/* ----- BOUTONS GÉNÉRAUX ----- */
+
+button {
+  margin-top: 1.2rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.35), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.35), transparent 60%);
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease,
+    opacity 0.16s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.96);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.85);
+}
+
+/* ----- ETAT / MESSAGES ----- */
+
+.error {
+  margin-top: 0.6rem;
+  color: var(--error);
+  font-size: 0.86rem;
+}
+
+.success {
+  margin-top: 0.6rem;
+  color: var(--success);
+  font-size: 0.86rem;
+}
+
+/* ----- MAP ----- */
+
+.map-section {
+  margin-top: 2rem;
+  padding-top: 1.1rem;
+  border-top: 1px dashed rgba(148, 163, 184, 0.4);
+}
+
+.map-section h3 {
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.map-section p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.map-container {
+  border-radius: 0.9rem;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+}
+
+/* ----- PAIEMENT ----- */
+
+.payment-section {
+  margin-top: 1.8rem;
+  padding: 1.2rem 1.1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9)),
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.16), transparent 55%);
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.15), transparent 60%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.payment-section h3 {
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.payment-section h3::after {
+  content: '';
+  display: block;
+  margin-top: 0.25rem;
+  width: 52px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+}
+
+/* résumé RDV dans le bloc paiement */
+
+.summary-box {
+  position: relative;
+  margin-bottom: 0.9rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 0.8rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px dashed rgba(148, 163, 184, 0.55);
+  font-size: 0.86rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.2rem 0.6rem;
+}
+
+.summary-box p {
+  margin: 0.1rem 0;
+}
+
+/* méthode de paiement */
+
+.payment-section > label {
+  position: relative;
+  margin-top: 0.4rem;
+}
+
+.payment-section select {
+  margin-top: 0.25rem;
+}
+
+/* formulaire carte */
+
+.card-form {
+  position: relative;
+  margin-top: 0.8rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: 0.85rem;
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
+              rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.9);
+}
+
+.card-form label {
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+  font-size: 0.82rem;
+}
+
+.card-form input {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.55rem;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.96);
+  color: var(--text-main);
+  font-size: 0.86rem;
+  outline: none;
+  transition:
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.12s ease;
+}
+
+.card-form input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.7);
+  transform: translateY(-1px);
+}
+
+.card-row {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.45rem;
+}
+
+.card-row > div {
+  flex: 1;
+}
+
+
+.payment-section button {
+  width: 100%;
+  margin-top: 1.1rem;
+  background:
+    linear-gradient(120deg, var(--accent-blue), var(--accent-green));
+  border-color: transparent;
+  color: #0b1120;
+  box-shadow: 0 18px 40px rgba(34, 197, 94, 0.55);
+}
+
+.payment-section button:hover {
+  box-shadow: 0 22px 52px rgba(34, 197, 94, 0.7);
+}
+
+/* texte d'info dans la carte */
+
+.card-form .info-text {
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ----- RESPONSIVE ----- */
+
+@media (max-width: 600px) {
+  .rendezvous-form {
+    margin: 1rem;
+    padding: 1.2rem 1rem;
+  }
+
+  .slots-container {
+    gap: 0.35rem;
+  }
+
+  .summary-box {
+    grid-template-columns: 1fr;
+  }
+
+  .card-row {
+    flex-direction: column;
+  }
+}

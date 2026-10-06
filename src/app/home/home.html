@@ -1,0 +1,222 @@
+<div class="home">
+
+  <section class="hero">
+    <div class="hero__content">
+      <p class="hero__eyebrow">Votre atelier auto connecté</p>
+      <h1 class="hero__title">
+        Prenez soin de votre véhicule,
+        <span>sans perdre de temps.</span>
+      </h1>
+      <p class="hero__subtitle">
+        Entretien, mécanique, pneus, géométrie… Réservez votre rendez-vous en ligne
+        et profitez d’un suivi clair, rapide et transparent.
+      </p>
+
+      <div class="hero__actions">
+        <button class="btn-primary" (click)="goToRendezVous()">
+          Commencer
+          <span class="btn-primary__icon">→</span>
+        </button>
+
+        <a href="#services" class="btn-ghost">
+          Voir nos prestations
+        </a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="stat">
+          <span class="stat__value">+1 200</span>
+          <span class="stat__label">Véhicules pris en charge</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">4.8★</span>
+          <span class="stat__label">Satisfaction clients</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">24/7</span>
+          <span class="stat__label">Prise de rendez-vous</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <div class="hero-card">
+        <div class="hero-card__badge">AutoFix Atelier</div>
+        <div class="hero-card__line">
+          <span class="hero-card__label">Prochain rendez-vous</span>
+          <span class="hero-card__value">Demain, 10:30</span>
+        </div>
+        <div class="hero-card__line">
+          <span class="hero-card__label">Type</span>
+          <span class="hero-card__value">Révision & vidange</span>
+        </div>
+        <div class="hero-card__progress">
+          <div class="hero-card__progress-bar"></div>
+        </div>
+        <p class="hero-card__hint">Suivi en temps réel de l’avancement</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="services" class="features-section">
+    <div class="section-header">
+      <p class="section-eyebrow">Nos prestations atelier</p>
+      <h2 class="section-title">Tout pour la santé de votre véhicule</h2>
+      <p class="section-subtitle">
+        Des services complets pour rouler en confiance, du simple entretien aux réparations plus techniques.
+      </p>
+    </div>
+
+    <div class="features-grid">
+ 
+      <article class="card">
+        <div class="card__icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" alt="Entretien" />
+        </div>
+        <h3 class="card__title">Entretien</h3>
+        <ul class="card__list">
+          <li>Révision et vidange</li>
+          <li>Révision voiture électrique</li>
+          <li>Filtration & contrôles courants</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="card__icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/841/841364.png" alt="Sécurité" />
+        </div>
+        <h3 class="card__title">Sécurité</h3>
+        <ul class="card__list">
+          <li>Freinage (plaquettes & disques)</li>
+          <li>Échappement & contrôle visuel</li>
+          <li>Amortisseurs & tenue de route</li>
+        </ul>
+      </article>
+
+
+      <article class="card">
+        <div class="card__icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" alt="Pneumatique" />
+        </div>
+        <h3 class="card__title">Pneumatiques</h3>
+        <ul class="card__list">
+          <li>Montage et permutation pneus</li>
+          <li>Réparation et gonflage azote</li>
+          <li>Gardiennage de vos pneus</li>
+        </ul>
+      </article>
+
+ 
+      <article class="card">
+        <div class="card__icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" alt="Mécanique et entretien" />
+        </div>
+        <h3 class="card__title">Mécanique & entretien</h3>
+        <ul class="card__list">
+          <li>Courroie de distribution</li>
+          <li>Direction & suspension</li>
+          <li>Diagnostic & réparation moteur</li>
+        </ul>
+      </article>
+
+  
+      <article class="card">
+        <div class="card__icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" alt="Géométrie" />
+        </div>
+        <h3 class="card__title">Géométrie & parallélisme</h3>
+        <ul class="card__list">
+          <li>Contrôle géométrie complète</li>
+          <li>Réglage du parallélisme</li>
+          <li>Optimisation de l’usure des pneus</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="card__icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" alt="Support 24/7" />
+        </div>
+        <h3 class="card__title">Support & assistance</h3>
+        <ul class="card__list">
+          <li>Accompagnement personnalisé</li>
+          <li>Suivi après intervention</li>
+          <li>Conseils d’entretien</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+<section id="about" class="about-section">
+  <div class="about-inner">
+    <div class="about-text">
+      <p class="section-eyebrow">À propos d’AutoFix</p>
+      <h2 class="section-title">Un atelier moderne, pensé pour votre confort</h2>
+      <p class="about-lead">
+        AutoFix est un atelier auto connecté qui marie expertise mécanique et outils digitaux
+        pour vous simplifier la vie, du rendez-vous au suivi de l’intervention.
+      </p>
+      <p class="about-body">
+        Nous mettons la transparence et la confiance au centre de notre relation avec vous :
+        devis clairs, interventions expliquées, suivi en ligne et historique de votre véhicule.
+        Que ce soit pour l’entretien courant, la sécurité ou un diagnostic plus poussé,
+        notre équipe vous accompagne avec sérieux et pédagogie.
+      </p>
+    </div>
+
+    <div class="about-media">
+      <div class="about-media__card">
+        <img
+          src="https://images.pexels.com/photos/4489732/pexels-photo-4489732.jpeg"
+          alt="Atelier mécanique moderne"
+          class="about-media__img"
+        />
+        <div class="about-media__overlay">
+          <span class="about-media__badge">Atelier certifié</span>
+          <p class="about-media__caption">
+            Zone de service dédiée, équipements modernes et suivi digital de chaque intervention.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-card">
+    <div class="contact-card__content">
+      <h3 class="contact-title">
+        Besoin d’un conseil ou d’un devis ?
+      </h3>
+      <p class="contact-text">
+        Notre équipe est disponible pour vous guider dans la prestation
+        la plus adaptée à votre véhicule. Contactez-nous directement 
+      </p>
+
+      <div class="contact-info">
+        <p class="contact-row">
+          <span class="contact-icon">📞</span>
+          <a href="tel:+21650123456">+216 50 123 456</a>
+        </p>
+        <p class="contact-row">
+          <span class="contact-icon">📍</span>
+          <a href="https://goo.gl/maps/" target="_blank">
+            Zone Industrielle - Ariana, Tunisie
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="contact-card__actions">
+      <a href="#contact" class="btn-primary btn-primary--outline">
+        Envoyer un message
+      </a>
+      <span class="contact-footnote">
+        Disponible du lundi au samedi, 8h → 18h.
+      </span>
+    </div>
+  </div>
+</section>
+
+
+  

@@ -1,0 +1,148 @@
+<div class="dashboard">
+
+  <div class="dash-header">
+    <div class="header-top">
+      <h1>Bienvenue, <span>{{ username() }}</span> 👋</h1>
+
+      <button class="logout-btn" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        Déconnexion
+      </button>
+    </div>
+
+    <p>Gérez rapidement vos véhicules et vos rendez-vous.</p>
+    <p class="error" *ngIf="error()">{{ error() }}</p>
+    <p class="info-text" *ngIf="loading()">Chargement...</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <i class="fas fa-car"></i>
+      <div>
+        <h3>Véhicules</h3>
+        <p>{{ stats().vehicules }}</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <i class="fas fa-calendar-check"></i>
+      <div>
+        <h3>Rendez-vous</h3>
+        <p>{{ stats().rendezvous }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a routerLink="/loginvehicle" class="action-card">
+      <i class="fas fa-plus-circle"></i>
+      <h3>Ajouter un véhicule</h3>
+      <p>Enregistrer un nouveau véhicule</p>
+    </a>
+
+    <a routerLink="/rendezvous" class="action-card">
+      <i class="fas fa-clock"></i>
+      <h3>Prendre un rendez-vous</h3>
+      <p>Planifier une intervention</p>
+    </a>
+
+    <button type="button" class="action-card btn-card" (click)="openVehiclesModal()">
+      <i class="fas fa-car-side"></i>
+      <h3>Consulter mes véhicules</h3>
+      <p>Voir la liste de vos véhicules</p>
+    </button>
+
+    <button type="button" class="action-card btn-card" (click)="openRendezvousModal()">
+      <i class="fas fa-list"></i>
+      <h3>Consulter mes rendez-vous</h3>
+      <p>Voir vos rendez-vous</p>
+    </button>
+  </div>
+</div>
+
+<div class="modal-overlay" *ngIf="showVehiclesModal()" (click)="closeVehiclesModal()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-head">
+      <h2>Mes véhicules</h2>
+      <button class="icon-btn" (click)="closeVehiclesModal()">✕</button>
+    </div>
+
+    <p class="modal-error" *ngIf="modalError()">{{ modalError() }}</p>
+    <p class="modal-loading" *ngIf="modalLoading()">Chargement...</p>
+
+    <div *ngIf="!modalLoading() && myVehicles().length === 0 && !modalError()" class="empty">
+      Aucun véhicule enregistré.
+    </div>
+<table class="modal-table" *ngIf="!modalLoading() && myVehicles().length > 0">
+  <thead>
+    <tr>
+      <th>Marque</th>
+      <th>VIN</th>
+      <th>Type</th>
+      <th class="th-actions">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let v of myVehicles()">
+      <td>{{ v.make }}</td>
+      <td>{{ v.vin }}</td>
+      <td>{{ v.registration_type }}</td>
+
+      <td class="td-actions">
+        <button
+          type="button"
+          class="btn-danger"
+          (click)="deleteVehicle(v)"
+          [disabled]="deletingId() === (v.id ?? v.vehicle_id)"
+        >
+          <span *ngIf="deletingId() !== (v.id ?? v.vehicle_id)">Supprimer</span>
+          <span *ngIf="deletingId() === (v.id ?? v.vehicle_id)">Suppression...</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+<div class="modal-overlay" *ngIf="showRendezvousModal()" (click)="closeRendezvousModal()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-head">
+      <h2>Mes rendez-vous</h2>
+      <button class="icon-btn" (click)="closeRendezvousModal()">✕</button>
+    </div>
+
+    <p class="modal-error" *ngIf="modalError()">{{ modalError() }}</p>
+    <p class="modal-loading" *ngIf="modalLoading()">Chargement...</p>
+
+    <div *ngIf="!modalLoading() && myRendezvous().length === 0 && !modalError()" class="empty">
+      Aucun rendez-vous.
+    </div>
+
+    <table class="modal-table" *ngIf="!modalLoading() && myRendezvous().length > 0">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Service</th>
+          <th>Prix</th>
+          <th>Paiement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of myRendezvous()">
+          <td>{{ r.date_rdv }}</td>
+          <td>{{ r.heure_rdv }}</td>
+          <td>{{ r.service }}</td>
+          <td>{{ r.price }} DT</td>
+          <td>
+            <span class="badge" [class.badge-ok]="r.payment_status === 'paid'">
+              {{ r.payment_status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

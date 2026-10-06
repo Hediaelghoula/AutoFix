@@ -1,0 +1,188 @@
+:host {
+  --bg-main: #020617;
+  --bg-card: rgba(15, 23, 42, 0.96);
+  --border-muted: rgba(148, 163, 184, 0.3);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --accent-blue: #38bdf8;
+  --accent-green: #22c55e;
+  --accent-purple: #a855f7;
+  --error: #f87171;
+  --success: #4ade80;
+
+  display: block;
+  color: var(--text-main);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+/* ----- CARD PRINCIPALE ----- */
+.vehicle-form {
+  max-width: 560px;
+  margin: 2.2rem auto;
+  padding: 1.6rem 1.7rem;
+  border-radius: 1.3rem;
+
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.16), transparent 55%),
+    var(--bg-card);
+
+  border: 1px solid var(--border-muted);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(18px);
+}
+
+.vehicle-form h2 {
+  margin: 0 0 1.2rem;
+  font-size: 1.35rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.vehicle-form h2::before {
+  content: '';
+  width: 32px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+}
+
+
+.vehicle-form form {
+  display: grid;
+  gap: 0.1rem; 
+}
+
+
+.vehicle-form label {
+  display: block;
+  margin-top: 0.95rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+/* ----- INPUTS & SELECT ----- */
+.vehicle-form select,
+.vehicle-form input[type="text"] {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.8rem;
+  border: 1px solid var(--border-muted);
+  background: rgba(15, 23, 42, 0.95);
+  color: var(--text-main);
+  font-size: 0.92rem;
+  outline: none;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease,
+    transform 0.12s ease;
+}
+
+.vehicle-form select option {
+  background: #0b1220;
+  color: var(--text-main);
+}
+
+.vehicle-form select:focus,
+.vehicle-form input[type="text"]:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.7);
+  transform: translateY(-1px);
+}
+
+.vehicle-form button[type="submit"] {
+  margin-top: 1.25rem;
+  width: 100%;
+  padding: 0.78rem 1.2rem;
+
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+
+  background:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.35), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.35), transparent 60%);
+
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9);
+
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease,
+    opacity 0.16s ease;
+}
+
+.vehicle-form button[type="submit"]:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.96);
+}
+
+.vehicle-form button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.85);
+}
+
+
+.vehicle-form .error {
+  margin-top: 0.7rem;
+  color: var(--error);
+  font-size: 0.86rem;
+}
+
+
+@media (max-width: 600px) {
+  .vehicle-form {
+    margin: 1rem;
+    padding: 1.2rem 1rem;
+  }
+
+  .vehicle-form h2 {
+    font-size: 1.18rem;
+  }
+}
+.th-actions,
+.td-actions {
+  width: 140px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.btn-danger {
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.75rem;
+
+  border: 1px solid rgba(248, 113, 113, 0.55);
+  background: rgba(248, 113, 113, 0.12);
+  color: #fecaca;
+
+  font-weight: 700;
+  cursor: pointer;
+
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-danger:hover {
+  transform: translateY(-1px);
+  background: rgba(248, 113, 113, 0.18);
+  border-color: rgba(248, 113, 113, 0.9);
+}
+
+.btn-danger:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}

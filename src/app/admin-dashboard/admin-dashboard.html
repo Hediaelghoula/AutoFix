@@ -1,0 +1,142 @@
+<div class="admin">
+  <h2>Admin Dashboard</h2>
+  
+
+  <nav class="tabs">
+    <button (click)="setTab('users')" [class.active]="tab()==='users'">Utilisateurs</button>
+    <button (click)="setTab('appointments')" [class.active]="tab()==='appointments'">Rendez-vous</button>
+    <button (click)="setTab('services')" [class.active]="tab()==='services'">Services</button>
+  </nav>
+
+  <section *ngIf="tab()==='users'">
+    <h3>Liste des utilisateurs</h3>
+
+    <p class="error" *ngIf="errorUsers()">{{ errorUsers() }}</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Rôle</th>
+          <th>Créé</th>
+          <th>Numero de télephone</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let u of users()">
+          <td>{{ u.id }}</td>
+          <td>{{ u.fullname || u.name }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.role }}</td>
+          <td>{{ u.created_at }}</td>
+           <td>{{ u.phone }}</td>
+
+        </tr>
+
+        <tr *ngIf="!errorUsers() && users().length === 0">
+          <td colspan="5">Aucun utilisateur trouvé</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div *ngIf="tab() === 'appointments'">
+    <h3>Liste des rendez-vous</h3>
+
+    <p class="error" *ngIf="errorAppointments()">{{ errorAppointments() }}</p>
+
+    <table class="table" *ngIf="appointments().length > 0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Utilisateur</th>
+          <th>Service</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Statut paiement</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let a of appointments()">
+          <td>{{ a.id }}</td>
+          <td>{{ a.user_name || '—' }}</td>
+          <td>{{ a.service }}</td>
+          <td>{{ a.date_rdv || a.rendezvous_date || '—' }}</td>
+          <td>{{ a.heure_rdv || '—' }}</td>
+          <td>{{ a.payment_status || '—' }}</td>
+          <td>{{ a.notes || '' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="!errorAppointments() && appointments().length === 0">
+      Aucun rendez-vous.
+    </p>
+  </div>
+
+  <div *ngIf="tab() === 'services'">
+    <h3>Services</h3>
+
+    <p class="error" *ngIf="errorServices()">{{ errorServices() }}</p>
+    <p style="color:green" *ngIf="successMessage()">{{ successMessage() }}</p>
+
+    <form (ngSubmit)="saveService()" style="margin-bottom: 16px;">
+      <input
+        type="text"
+        [(ngModel)]="serviceForm.name"
+        name="name"
+        placeholder="Nom service"
+        required
+      />
+      <input
+        type="number"
+        [(ngModel)]="serviceForm.price"
+        name="price"
+        placeholder="Prix"
+        required
+      />
+
+      <button type="submit">{{ editingService ? 'Modifier' : 'Ajouter' }}</button>
+      <button type="button" *ngIf="editingService" (click)="cancelEdit()">Annuler</button>
+    </form>
+
+    <table *ngIf="services().length > 0" class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prix</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let s of services()">
+          <td>{{ s.id }}</td>
+          <td>{{ s.name }}</td>
+          <td>{{ s.price }}</td>
+          <td>
+            <button type="button" (click)="editService(s)">Modifier</button>
+            <button type="button" (click)="deleteService(s.id)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="services().length === 0 && !errorServices()">
+      Aucun service.
+    </p>
+  </div>
+</div>
+<div class="admin-header">
+
+
+  <button class="logout-btn" (click)="logout()">
+    Déconnexion
+  </button>
+</div>

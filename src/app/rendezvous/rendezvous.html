@@ -1,0 +1,139 @@
+<div class="rendezvous-form">
+  <h2>Prendre un rendez-vous</h2>
+
+  <label>Véhicule</label>
+  <select [(ngModel)]="selectedVehicleId" (change)="onVehicleChange()">
+    <option value="">-- Sélectionnez un véhicule --</option>
+    <option *ngFor="let v of vehicles" [value]="v.id">
+      {{ v.make }} - {{ v.vin }} ({{ v.registration_type }})
+    </option>
+  </select>
+
+  <div class="vehicle-info" *ngIf="selectedVehicle">
+    <p><b>Marque :</b> {{ selectedVehicle.make }}</p>
+    <p><b>VIN :</b> {{ selectedVehicle.vin }}</p>
+    <p><b>Type :</b> {{ selectedVehicle.registration_type }}</p>
+  </div>
+
+
+  <label>Date du rendez-vous</label>
+  <input
+    type="date"
+    [(ngModel)]="selectedDate"
+    (change)="onDateChange()"
+    [min]="minDate"
+  />
+
+  <div class="slots-wrapper" *ngIf="selectedDate">
+    <p *ngIf="loadingSlots" class="info-text">
+      Chargement des disponibilités...
+    </p>
+
+    <div *ngIf="!loadingSlots">
+      <p *ngIf="!timeSlots.length" class="info-text">
+        Aucun créneau disponible pour cette date. Veuillez choisir un autre jour.
+      </p>
+
+      <div class="slots-container" *ngIf="timeSlots.length">
+        <button
+          type="button"
+          class="slot-btn"
+          *ngFor="let slot of timeSlots"
+          [disabled]="slot.booked"
+          [ngClass]="{
+            'slot--selected': selectedTime === slot.time,
+            'slot--booked': slot.booked
+          }"
+          (click)="selectSlot(slot)"
+        >
+          {{ slot.time }}
+          <span *ngIf="slot.booked"> (occupé)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <label>Notes</label>
+  <textarea
+    [(ngModel)]="notes"
+    placeholder="Précisez un symptôme, un bruit, une demande particulière..."
+  ></textarea>
+
+  <label>Service</label>
+  <select [(ngModel)]="selectedServiceId" (change)="updatePrice()">
+    <option [ngValue]="null">-- Sélectionnez --</option>
+    <option *ngFor="let s of services" [ngValue]="s.id">
+      {{ s.name }} - {{ s.price }} DT
+    </option>
+  </select>
+
+  <div *ngIf="servicePrice !== null" class="price-info">
+    Prix estimé : <span>{{ servicePrice }} DT</span>
+  </div>
+
+  <button type="button" (click)="goToPayment()" *ngIf="!showPayment">
+    CONFIRMER & PASSER AU PAIEMENT
+  </button>
+
+
+  <div class="payment-section" *ngIf="showPayment">
+    <h3>Paiement</h3>
+
+    <div class="summary-box">
+      <p><b>Date :</b> {{ selectedDate }}</p>
+      <p><b>Heure :</b> {{ selectedTime }}</p>
+      <p><b>Service :</b> {{ selectedServiceName || '—' }}</p>
+      <p><b>Montant :</b> {{ servicePrice ?? 0 }} DT</p>
+    </div>
+
+    <label>Méthode de paiement</label>
+    <select [(ngModel)]="paymentMethod">
+      <option value="card">Carte bancaire</option>
+      <option value="cash">Paiement au garage</option>
+    </select>
+
+    <div *ngIf="paymentMethod === 'card'" class="card-form">
+      <label>Nom sur la carte</label>
+      <input type="text" [(ngModel)]="cardHolder" />
+
+      <label>Numéro de carte</label>
+      <input
+        type="text"
+        maxlength="19"
+        [(ngModel)]="cardNumber"
+        placeholder="**** **** **** ****"
+      />
+
+      <div class="card-row">
+        <div>
+          <label>Expiration</label>
+          <input type="text" [(ngModel)]="cardExpiry" placeholder="MM/AA" />
+        </div>
+        <div>
+          <label>CVV</label>
+          <input type="password" maxlength="4" [(ngModel)]="cardCvv" />
+        </div>
+      </div>
+
+      <p class="info-text">Paiement simulé (pas de vrai débit).</p>
+    </div>
+
+    <button type="button" (click)="confirmPayment()">Valider le paiement</button>
+  </div>
+
+  <button type="button" *ngIf="lastReceiptPayload" (click)="downloadReceipt()">
+    Télécharger le reçu PDF
+  </button>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+
+ 
+  <div class="thank-modal" *ngIf="showThankYou" (click)="closeThankYou()">
+    <div class="thank-card" (click)="$event.stopPropagation()">
+      <h3>✅ Merci pour votre confiance</h3>
+      <p>Votre rendez-vous a été confirmé avec succès.</p>
+      <button type="button" (click)="closeThankYou()">OK</button>
+    </div>
+  </div>
+</div>

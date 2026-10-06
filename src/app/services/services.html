@@ -1,0 +1,35 @@
+<section class="services-page">
+  <header class="services-header">
+    <div>
+      <h1>Nos services</h1>
+      <p>Choisissez un service et prenez rendez-vous facilement.</p>
+    </div>
+  </header>
+
+  <div class="services-grid">
+    <article
+      class="service-card"
+      *ngFor="let service of services; trackBy: trackById"
+    >
+      <div class="service-card__top">
+        <h2 class="service-title">{{ service.name }}</h2>
+      </div>
+
+      <p class="service-desc">{{ service.description }}</p>
+
+      <div class="service-meta">
+        <span class="chip">⏱ {{ service.estimatedDuration }}</span>
+        <span class="chip" *ngIf="service.priceRange">
+          💶 {{ service.priceRange }}
+        </span>
+      </div>
+    </article>
+  </div>
+
+
+  <div class="services-footer">
+    <button class="service-cta service-cta--page" type="button" (click)="bookService()">
+      Prendre rendez-vous
+    </button>
+  </div>
+</section>

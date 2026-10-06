@@ -1,0 +1,35 @@
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+  
+    <div class="navbar__logo">
+      <span class="logo-icon">🚗</span>
+      <span class="logo-text">AutoFix</span>
+    </div>
+
+ 
+    <ul class="navbar__links" [class.navbar__links--open]="isMenuOpen">
+      <li class="navbar__item">
+        <a href="#" class="navbar__link" (click)="closeMenu()">Accueil</a>
+      </li>
+      <li class="navbar__item">
+        <a href="#services" class="navbar__link" (click)="closeMenu()">Services</a>
+      </li>
+      <li class="navbar__item">
+        <a href="#about" class="navbar__link" (click)="closeMenu()">À propos</a>
+      </li>
+      <li class="navbar__item">
+        <a href="#contact" class="navbar__link" (click)="closeMenu()">Contact</a>
+      </li>
+    </ul>
+
+    <a class="btn-login" (click)="goToLogin()">
+      <span>Se connecter</span>
+    </a>
+
+    <button class="navbar__toggle" (click)="toggleMenu()" aria-label="Menu">
+      <span class="bar" [class.bar--top]="isMenuOpen"></span>
+      <span class="bar" [class.bar--middle]="isMenuOpen"></span>
+      <span class="bar" [class.bar--bottom]="isMenuOpen"></span>
+    </button>
+  </div>
+</nav>

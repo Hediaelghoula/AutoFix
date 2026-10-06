@@ -1,0 +1,28 @@
+<div class="register-wrapper">
+  <div class="register-card">
+    <h2>Créer un compte</h2>
+
+    <div class="input-group">
+      <span class="icon">👤</span>
+      <input type="text" placeholder="Nom complet" [(ngModel)]="fullname" required>
+    </div>
+
+    <div class="input-group">
+      <span class="icon">📧</span>
+      <input type="email" placeholder="Email" [(ngModel)]="email" required>
+    </div>
+
+    <div class="input-group">
+      <span class="icon">🔒</span>
+      <input type="password" placeholder="Mot de passe" [(ngModel)]="password" minlength="4" required>
+    </div>
+    <div class="input-group">
+  <span class="icon">📱</span>
+  <input type="tel" placeholder="Numéro de téléphone" [(ngModel)]="phone" required>
+</div>
+
+
+    <button (click)="submit()">Créer un compte</button>
+  </div>
+</div>
+
